@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="./css/form.css">
+    <script src="http://localhost/localServer/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <form method="post">
+        <div id="res"></div>
+        
+        <div class="form-input">
+            <input type="email" name="email" id="email" placeholder="Email">
+        </div>
+        <div class="form-input">
+            <input type="password" name="placeholder" id="password" placeholder="Password">
+        </div>
+        <div class="form-input">
+            <button name="login" id="login" type="submit">Login</button>
+        </div>
+        <p>Don't have an Account? <a href="./signup.html">SignUp </a></p>
+    </form>
+    <script>
+        $(document).ready(function(){
+
+            $("form").on("submit", (e)=>{
+               e.preventDefault();
+            });
+            $("#login").on("click", function(){
+                let Email = $("#email").val();
+                let psw = $("#password").val();
+                $.ajax({
+                    type: 'post',
+                    url : './php/login.php',
+                    data : {
+                        email : Email,
+                        password :psw
+                    },
+                    success : function(res){
+                         $("#res").html(res);
+                         setTimeout(() => {
+                            document.querySelector("#res").innerHTML = '';
+                         },3300);
+                    }
+                });
+            });
+        });
+    </script>
+   
+</body>
+</html>

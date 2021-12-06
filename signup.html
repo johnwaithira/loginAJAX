@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create account</title>
+    <link rel="stylesheet" href="./css/form.css">
+    <script src="http://localhost/localServer/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <form method="post">
+        <div id="res"></div>
+        <div class="form-input">
+            <input type="text" name="username" id="username" placeholder="Username">
+        </div>
+        <div class="form-input">
+            <input type="email" name="email" id="email" placeholder="Email">
+        </div>
+        <div class="form-input">
+            <input type="password" name="placeholder" id="password" placeholder="Password">
+        </div>
+        <div class="form-input">
+            <button name="login" id="sign" type="submit">Login</button>
+        </div>
+        <p>Have an Account? <a href="./login.html">Login </a></p>
+    </form>
+ 
+    <script>
+        $(document).ready(function(){
+
+            $("form").on("submit", (e)=>{
+               e.preventDefault();
+            });
+            $("#sign").on("click", function(){
+                let uname = $("#username").val();
+                let Email = $("#email").val();
+                let psw = $("#password").val();
+                $.ajax({
+                    type: 'post',
+                    url : './php/signup.php',
+                    data : {
+                        username : uname,
+                        email : Email,
+                        password :psw
+                    },
+                    success : function(res){
+                         $("#res").html(res);
+                         setTimeout(() => {
+                            document.querySelector("#res").innerHTML = '';
+                         },3300);
+
+                         setTimeout(() => {
+                            document.querySelector("#username").value = '';
+                            document.querySelector("#email").value = '';
+                            document.querySelector("#password").value = '';
+                         },3000);
+
+                    }
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>
