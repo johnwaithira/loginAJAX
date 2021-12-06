@@ -12,6 +12,6 @@ require "./php/conn.php";
     <script src="http://localhost/localServer/jquery-3.4.1.min.js"></script>
 </head>
 <body>
-    
+    <?php echo "Welcome" .$_SESSION['name'];?>
 </body>
 </html>
