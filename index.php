@@ -15,11 +15,3 @@ require "./php/conn.php";
     
 </body>
 </html>
-<script>
-    setInterval (()=>{
-        var x = new XMLHttpRequest();
-        x.open("GET", "./config/session.php", true);
-        x.send();
-        console.log("m");
-    }, 1000);
-</script>
