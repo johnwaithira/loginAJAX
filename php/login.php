@@ -7,4 +7,5 @@ if(!empty($_POST['email'])){
     $emai = esc($_POST['email']);
 
     $password = securePass(esc($_POST['password']));
+    echo $password;
 }
